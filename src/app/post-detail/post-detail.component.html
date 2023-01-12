@@ -1,0 +1,18 @@
+<div class="col-sm-12" *ngIf="post">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{post.name}}</h5>
+      <hr />
+      <p class="card-text"><b>Description</b> : {{post.description}}</p>
+      <p class="card-text"><b>Responsibilities</b> : {{post.responsibilities}}</p>
+      <p class="card-text"><b>Skills</b> : {{post.skills}}</p>
+      <p class="card-text"><b>Category</b> : {{post.category}}</p>
+      <p class="card-text"><b>Max Applicants</b> : {{post.maxApplicants}} applicants</p>
+      <p class="card-text"><b>Validation Time</b> : From {{post.validFrom | date : 'mediumDate'}} To {{post.validTo|
+        date : 'mediumDate'}}</p>
+      <a href="#" class="btn btn-primary" style="margin-right: 7px;"
+        [routerLink]="['/update-vacancy' , post.id]">Update</a>
+      <a class="btn btn-danger" (click)="handleDelete()">Delete</a>
+    </div>
+  </div>
+</div>

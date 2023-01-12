@@ -1,0 +1,7 @@
+::ng-deep .btn-success {
+  margin-right: 3px;
+}
+
+::ng-deep .buttons {
+  margin-top: 7px;
+}

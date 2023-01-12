@@ -1,0 +1,72 @@
+<form class="row g-3" name="temFrm" #temFrm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="card">
+    <div class="card-header">
+      {{cardHeader}}
+    </div>
+    <ng-container *ngIf="!isLoading; else elseTemplate">
+      <div class="card-body" *ngIf="vacancy">
+        <div class="col-md-6">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" name="vacancyName" #vacancyName="ngModel" [(ngModel)]="vacancy.name"
+            [class.is-invalid]="vacancyName.invalid && vacancyName.touched" required>
+          <span class="text-danger" *ngIf="vacancyName.touched && vacancyName.errors?.['required']">
+            Name is required
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Description</label>
+          <textarea rows="4" class="form-control" name="description" [(ngModel)]="vacancy.description"></textarea>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Responsibilities</label>
+          <textarea rows="4" class="form-control" name="responsibilities"
+            [(ngModel)]="vacancy.responsibilities"></textarea>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Skills</label>
+          <textarea rows="4" class="form-control" name="skills" [(ngModel)]="vacancy.skills"></textarea>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Category</label>
+          <textarea rows="4" class="form-control" name="category" [(ngModel)]="vacancy.category"></textarea>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">Max Applicants</label>
+          <input type="number" min="1" class="form-control" name="maxApplicants" [(ngModel)]="vacancy.maxApplicants"
+            #maxApplicants="ngModel" [class.is-invalid]="maxApplicants.invalid && maxApplicants.touched" required />
+          <span class="text-danger" *ngIf="maxApplicants.touched && maxApplicants.errors?.['required']">
+            Max Applicants is required
+          </span>
+        </div>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">From Date</label>
+          <input type="text" placeholder="From Date" class="form-control" bsDatepicker name="bs"
+            [(ngModel)]="vacancy.validFrom" [bsConfig]="{ isAnimated: true, dateInputFormat: 'YYYY-MM-DD' }"
+            #bs="ngModel" [class.is-invalid]="bs.invalid && bs.touched" required>
+        </div>
+        <span class="text-danger" *ngIf="bs.touched && bs.errors?.['required']">
+          From Date is required
+        </span>
+        <div class="col-md-6 mt-3">
+          <label class="form-label">To Date</label>
+          <input type="text" placeholder="To Date" class="form-control" bsDatepicker name="ds"
+            [(ngModel)]="vacancy.validTo" [bsConfig]="{ isAnimated: true, dateInputFormat: 'YYYY-MM-DD' }" #ds="ngModel"
+            [class.is-invalid]="ds.invalid && ds.touched" required>
+          <span class="text-danger" *ngIf="ds.touched && ds.errors?.['required']">
+            To Date is required
+          </span>
+        </div>
+        <div class="col-md-12 mt-5">
+          <button type="submit" class="btn btn-primary" style="margin-right: 5px;"
+            [disabled]="temFrm.invalid">Update</button>
+          <button type="button" class="btn btn-warning" [routerLink]="['/vacancy']">Back</button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="ld ld-ring ld-spin-fast"></div>
+    </ng-template>
+
+  </div>
+
+</form>
