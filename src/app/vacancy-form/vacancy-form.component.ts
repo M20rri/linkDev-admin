@@ -54,21 +54,18 @@ export class VacancyFormComponent implements OnInit {
 
     if (this.id > 0) {
       await this._linkDev.updateVacancy(this.vacancy).subscribe(res => {
-        this.toastr.open({ text: `Vacancy #${res.data} Updated successfully`, caption: 'LikDev', duration: 4000, type: ToastType.success, position: ToastPosition.topRight });
+        this.toastr.open({ text: `Vacancy #${res.data} Updated successfully`, caption: 'LinkDev', duration: 4000, type: ToastType.success, position: ToastPosition.topRight });
       });
     } else {
       await this._linkDev.createVacancy(this.vacancy).subscribe(res => {
         if (res.statusCode == 400) {
-          this.toastr.open({ text: res.data, caption: 'LikDev', duration: 4000, type: ToastType.danger, position: ToastPosition.topRight });
+          this.toastr.open({ text: res.data, caption: 'LinkDev', duration: 4000, type: ToastType.danger, position: ToastPosition.topRight });
           return;
         }
-        this.toastr.open({ text: `Vacancy #${res.data} Created successfully`, caption: 'LikDev', duration: 4000, type: ToastType.success, position: ToastPosition.topRight });
+        this.toastr.open({ text: `Vacancy #${res.data} Created successfully`, caption: 'LinkDev', duration: 4000, type: ToastType.success, position: ToastPosition.topRight });
         this.router.navigate(['vacancy']);
       });
     }
-
-
-
   }
 
 }

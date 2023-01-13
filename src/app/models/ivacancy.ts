@@ -15,3 +15,10 @@ export interface IVacancyPagination {
   vacancies: IVacancy[];
   totalCount: number;
 }
+
+export interface IApplicant {
+  id: number;
+  name: string;
+  email: string;
+  mobile: string;
+}

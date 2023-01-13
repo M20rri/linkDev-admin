@@ -28,8 +28,12 @@ export class LinkDevService {
     return this._http.put<IResponse>(`${environment.linkDevUrl}/vacancy/update`, model);
   }
 
-
   deleteVacancy(id: number): Observable<IResponse> {
     return this._http.delete<IResponse>(`${environment.linkDevUrl}/vacancy/delete/${id}`);
   }
+
+  getApplicantsPerVacancy(vacancyId: number): Observable<IResponse> {
+    return this._http.get<IResponse>(`${environment.linkDevUrl}/application/applicanter-per-vacancy/${vacancyId}`);
+  }
+
 }

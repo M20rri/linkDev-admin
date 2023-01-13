@@ -12,7 +12,39 @@
         date : 'mediumDate'}}</p>
       <a href="#" class="btn btn-primary" style="margin-right: 7px;"
         [routerLink]="['/update-vacancy' , post.id]">Update</a>
+      <a class="btn btn-warning" (click)="handleCandidates(viewContent)" *ngIf="applicants.length"
+        style="margin-right: 7px;"><b>{{applicants.length}}</b>
+        Candidates</a>
       <a class="btn btn-danger" (click)="handleDelete()">Delete</a>
     </div>
   </div>
 </div>
+<ng-template #viewContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Candidates</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Mobile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let applicant of applicants">
+          <th scope="row">{{applicant.id}}</th>
+          <td>{{applicant.name}}</td>
+          <td>{{applicant.email}}</td>
+          <td>{{applicant.mobile}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
